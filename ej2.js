@@ -2,10 +2,12 @@
 
 let addCount = 0;
 let numberCount = 0;
-let average = addCount / numberCount;
-
 for (let i = 2; i < process.argv.length; i++) {
-  addCount += i;
+  let currentValue = parseFloat(process.argv[i]);
+  addCount += currentValue;
   numberCount++;
 }
-console.log(addCount / numberCount);
+
+let average = addCount / numberCount;
+
+console.log(average);
