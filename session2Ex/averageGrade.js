@@ -9,12 +9,10 @@ let alumnos = {
 let studentName = process.argv[2];
 if (alumnos[studentName] !== undefined) {
   let addCount = 0;
-  let valueCount = 0;
   alumnos[studentName].forEach((item) => {
     addCount += item;
-    valueCount++;
   });
-  let average = valueCount > 0 ? addCount / valueCount : 0;
+  let average = addCount / alumnos[studentName].length;
   console.log(`${studentName} average grade is ${average}`);
 } else {
   console.log("Student doesn't exist");
