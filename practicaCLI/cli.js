@@ -13,3 +13,10 @@ const startProject = () => {
     });
   });
 };
+
+const createHtml = () => {
+  fs.writeFile(fileName + ".html", "", (err) => {
+    if (err) throw err;
+    console.log("File created");
+  });
+};
