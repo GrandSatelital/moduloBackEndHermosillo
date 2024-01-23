@@ -10,19 +10,27 @@ const fs = require("fs");
   if (err) throw err;
   console.log("File created");
 });
-
+*/
 /*fs.readFile("./example.txt", "utf-8", (err, data) => {
   if (err) throw err;
   console.log(data);
 });
 */
-
-fs.appendFile("./example.txt", ` Updated ${new Date()}`, (err) => {
+/*fs.appendFile("./example.txt", ` Updated ${new Date()}`, (err) => {
   if (err) throw err;
   console.log("File updated");
+  fs.readFile("./example.txt", "utf-8", (err, data) => {
+    if (err) throw err;
+    console.log(data);
+  });
 });
 
 /*fs.unlink("./deleteFile.txt", (err) => {
   if (err) throw err;
   console.log("File deleted");
 });*/
+
+fs.mkdir("./exampleFolder", (err) => {
+  if (err) throw err;
+  console.log("Folder created");
+});
