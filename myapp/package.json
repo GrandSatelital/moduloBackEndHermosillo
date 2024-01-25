@@ -1,0 +1,23 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "My first API cghd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/GrandSatelital/moduloBackEndHermosillo.git"
+  },
+  "author": "Carlos Hermosillo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrandSatelital/moduloBackEndHermosillo/issues"
+  },
+  "homepage": "https://github.com/GrandSatelital/moduloBackEndHermosillo#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
