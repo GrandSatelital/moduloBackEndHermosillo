@@ -5,14 +5,11 @@ const hostname = "localhost";
 
 const usersRoutes = require("./src/routes/users");
 
-app.use(usersRoutes);
+app.use("/users", usersRoutes);
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello Koders");
-});
-
-app.get("/hi", (req, res) => {
-  res.send("Hi!");
 });
 
 app.post("/", (req, res) => {
