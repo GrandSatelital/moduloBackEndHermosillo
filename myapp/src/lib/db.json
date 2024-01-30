@@ -23,9 +23,12 @@
         "gender": "Female",
         "password": "hB5>V@1/y0s\\"
     },
-    null,
-    null,
-    null,
-    null,
-    null
+    {
+        "id": 4,
+        "first_name": "newUser",
+        "last_name": "Gasnell",
+        "email": "kgasnell2@is.gd",
+        "gender": "Female",
+        "password": "hB5>V@1/y0s\\"
+    }
 ]

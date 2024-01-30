@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
+app.use(express.json());
 const port = 3000;
 const hostname = "localhost";
 
 const usersRoutes = require("./src/routes/users");
 
 app.use("/users", usersRoutes);
-app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello Koders");

@@ -1,16 +1,21 @@
 const express = require("express");
+
 const router = express.Router();
-const fs = require("fs/promises");
-const { resolve } = require("path");
+const fs = require("fs");
 
 router.get("/", (req, res) => {
-  const getDB = fs
-    .readFile("./src/lib/db.json", "utf-8")
+  const readDB = new Promise((resolve, reject) => {
+    fs.readFile("./src/lib/db.json", "utf-8", (err, data) => {
+      if (err) reject(err);
+      resolve(JSON.parse(data));
+    });
+  });
+  readDB
     .then((data) => {
-      return res.status(200).send(JSON.parse(data));
+      res.send(data);
     })
     .catch((err) => {
-      res.status(500).send(err);
+      res.status(400).send(err);
     });
 });
 
@@ -19,32 +24,27 @@ Nota: el archivo JSON se debe guardar con el nuevo usuario.
 TIP: recuerda que puedes usar el código de tu practica anterior donde se leía y actualizaba el contenido de un archivo JSON*/
 
 router.post("/", (req, res) => {
-  let bodyData = req.body;
-
-  const readDB = fs
-    .readFile("./src/lib/db.json", "utf-8")
-    .then((data) => {
-      let object = JSON.parse(data);
-      object.push(bodyData);
-      return object; // Devuelve el objeto para que esté disponible para la siguiente promesa
-    })
-    .catch((err) => {
-      throw err;
+  const readDB = new Promise((resolve, reject) => {
+    fs.readFile("./src/lib/db.json", "utf-8", (err, data) => {
+      if (err) reject(err);
+      resolve(JSON.parse(data));
     });
-
+  });
   readDB
-    .then((object) => {
-      const updateDB = fs
-        .writeFile("./src/lib/db.json", JSON.stringify(object, null, 4))
-        .then(() => {
-          res.status(200).send("Users DB updated");
-        })
-        .catch((err) => {
-          res.status(500).send(err);
-        });
+    .then((dbJson) => {
+      const user = req.body;
+      dbJson.push(user);
+      fs.writeFile(
+        "./src/lib/db.json",
+        JSON.stringify(dbJson, null, 4),
+        (err) => {
+          if (err) res.status(400).send("User not created");
+          res.status(200).send("User created");
+        }
+      );
     })
-    .catch((err) => {
-      res.status(500).send(err);
+    .catch(() => {
+      res.status(400).send("Couldn't read DB");
     });
 });
 
